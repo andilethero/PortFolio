@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Thero Molefhe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="page-wrapper">
+        <div class="container">
+            <div class="content-row">
+                <div class="info-block">
+                    <span class="name">Thero Molefhe</span><br>
+                    <span class="title">Computer Systems Engineering Student</span><br>
+                    <span class="year">2023-2027</span>
+                </div>
+                <div class="separator"></div>
+                <div class="portfolio-title">
+                    <span>PORT</span><br>
+                    <span>FO</span><br>
+                    <span>LIO</span>
+                </div>
+            </div>
+            <div class="compass-line" id="compass">
+                <div class="compass-tick" id="compass-tick"></div>
+                <div class="compass-checkpoints">
+                    <div class="compass-checkpoint" data-section="welcome"></div>
+                    <div class="compass-checkpoint" data-section="about"></div>
+                    <div class="compass-checkpoint" data-section="projects"></div>
+                    <div class="compass-checkpoint" data-section="contact"></div>
+                </div>
+                <div class="compass-labels">
+                    <span class="compass-label" data-section="welcome">WELCOME</span>
+                    <span class="compass-label" data-section="about">ABOUT</span>
+                    <span class="compass-label" data-section="projects">PROJECTS</span>
+                    <span class="compass-label" data-section="contact">CONTACT</span>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/TextPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollToPlugin.min.js"></script>
+        <script src="script.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+                // --- Welcome Section Animations ---
+                const welcomeTl = gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } });
+                
+                // Get original text for typewriter
+                const titleText = document.querySelector(".title").textContent;
+                const yearText = document.querySelector(".year").textContent;
+
+                // Set initial states
+                gsap.set([".title", ".year"], { text: "", opacity: 1 }); // Clear text for typewriter
+                
+                welcomeTl
+                    .from(".portfolio-title", { opacity: 0, y: -50, duration: 1.2 })
+                    .from(".name", { opacity: 0, x: -50, duration: 1.2 }, "-=1") // Overlap with previous animation
+                    .from(".separator", { height: 0, duration: 0.8 }, "-=0.5")
+                    .to(".title", { text: titleText, duration: 2, ease: "none" }, "-=0.5")
+                    .to(".year", { text: yearText, duration: 0.5, ease: "none" }, ">");
+
+
+                // --- About Section Animation ---
+                gsap.from(".about-section .contract-col", {
+                    scrollTrigger: {
+                        trigger: ".about-section",
+                        start: "top 80%",
+                        toggleActions: "play none none none",
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                });
+
+                // --- Contact Section Label Animation ---
+                const contactTl = gsap.timeline({
+                    repeat: -1,
+                    yoyo: true,
+                    defaults: { duration: 4, ease: "power1.inOut" }
+                });
+
+                contactTl
+                    .to(".contact-label-top", { y: "-=15" })
+                    .to(".contact-label-right", { x: "+=15" }, "<")
+                    .to(".contact-label-bottom", { y: "+=15" }, "<")
+                    .to(".contact-label-left", { x: "-=15" }, "<");
+            });
+        </script>
+    
+        <!-- Client Contract Section -->
+        <section class="contract-section about-section">
+            <div class="contract-columns">
+                <div class="contract-col contract-col-black">
+                    <div class="contract-header">
+                        <div class="contract-logo">YOUR LOGO</div>
+                    </div>
+                    <div class="contract-title">ABOUT<br>ME</div>
+                    <div class="contract-desc">
+                        Hey! I'm Thero— a Computer Systems Engineering student with a passion for building tech that solves real problems. I enjoy working across the stack, whether it's setting up backend Databases's with SQL, building clean Websites with Js and HTML, or experimenting with cloud-based systems, building java-applications and small python-agents as small projects.
+                    </div>
+                </div>
+                <div class="contract-col contract-col-white">
+                    <div class="contract-logo">YOUR LOGO</div>
+                    <div class="contract-content">
+                        <div class="contract-section-title">SKILLS</div>
+                        <div class="contract-section-text">I've worked with a wide range of tools and technologies: Kotlin for mobile apps, Java and JavaScript for backend logic, SQL for data handling, and platforms like Cisco Packet Tracer for simulating and configuring networks. Lately, I've been digging into intelligent systems and exploring how smart, adaptable systems can make tech feel more human through the use of AI and small agents.</div>
+                    </div>
+                </div>
+                <div class="contract-col contract-col-white">
+                    <div class="contract-logo">YOUR LOGO</div>
+                    <div class="contract-content">
+                        <div class="contract-section-title">MY APPROACH</div>
+                        <div class="contract-section-text">
+                            <ul class="approach-list">
+                                <li>I write code that's clean, readable, and avoids unnecessary complexity.</li>
+                                <li>I love figuring things out—debugging weird errors, optimizing performance, or learning new frameworks on the fly.</li>
+                                <li>If there's a problem, I'm probably already sketching a solution and even inviting a college to make a better solution,"two brains are better than one".</li>
+                                <li>I always think about how people interact with the tech we build—good software should make life easier, not more complicated.</li>
+                                <li>I approach every project with a user-first mindset, whether it's an website for a resturant/café or a system for efficient data handling.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="contract-col contract-col-white">
+                    <div class="contract-logo">YOUR LOGO</div>
+                    <div class="contract-content">
+                        <div class="contract-section-title">WHAT'S NEXT</div>
+                        <div class="contract-section-text">Right now, I'm focused on growing my skills through real-world projects and collaborations. I'm always down to learn from others, join exciting builds, or jump into an internship where I can make an impact while picking up new tricks.
+    
+                        If you're looking for someone who codes with purpose, thinks in systems, and keeps it real — let's connect.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Resume Section -->
+        <section class="resume-section">
+          <div class="resume-left">
+            <div class="resume-links">
+              <a href="#education" class="resume-link active">Education</a><br>
+              <a href="#experience" class="resume-link">Experience</a><br>
+              <a href="#certifications" class="resume-link">Certifications</a>
+            </div>
+          </div>
+          <div class="resume-right">
+            <div class="resume-number">1</div>
+            <div class="resume-title" id="resume-title">Education</div>
+            <div class="resume-details resume-details-education" id="resume-education">
+              <p><strong>Botswana Accountancy College (BAC)</strong> – Bachelor of Engineering in Computer Systems Engineering<br>
+              Gaborone, Botswana — 2023–Present</p>
+              <p><em>Courses:</em> Software Engineering, Data Structures, Computer Networks, Cloud Computing, Intelligent Systems.</p>
+              <p><strong>New Era College of Arts, Science & Technology</strong> – Diploma in Telecommunications Engineering (Incomplete)<br>
+              Gaborone, Botswana — 2022–2023</p>
+              <p>Covered fundamentals in communication systems and network technologies.</p>
+              <p><strong>University of Botswana (UB)</strong> – BSc in Computer Science (Incomplete)<br>
+              Gaborone, Botswana — 2021–2022</p>
+              <p>Focused on core computer science foundations including programming, algorithms, and systems theory.</p>
+            </div>
+            <div class="resume-details resume-details-experience" id="resume-experience" style="display:none;">
+              <p><strong>Open to Internship Opportunities</strong></p>
+              <p>Eager to apply technical skills in a real-world environment, collaborate with engineering teams, and grow in backend/web-development/cloud development roles.</p>
+            </div>
+            <div class="resume-details resume-details-certifications" id="resume-certifications" style="display:none;">
+              <p><strong>Cisco Certified Network Associate (CCNA)</strong><br>
+              Cisco – Issued [June, 2025]</p>
+              <p>Covered topics: Networking fundamentals, IP services, security fundamentals, automation, and programmability.</p>
+              <p>Gained hands-on experience with network configuration, VLSM subnetting, routing & switching using Cisco Packet Tracer.</p>
+            </div>
+          </div>
+        </section>
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <div class="project-list">
+                <div class="project-item">
+                    <span class="item-label">Director</span>
+                    <span class="item-dots"></span>
+                    <span class="item-value">Thero Molefhe(First Project)</span>
+                </div>
+                <div class="project-item">
+                    <span class="click-me-prompt">click me ></span>
+                    <span class="item-label" data-target="project-one-info">FarmersAuction Site(School Group Project)</span>
+                    <span class="item-dots"></span>
+                    <span class="item-value"><a href="https://github.com/cse23-080/RI-project" target="_blank">View on GitHub</a> Or <a href="https://cse23-080.github.io/RI-project/home.html" target="_blank">View on Site</a></span> 
+                </div>
+                <div class="project-info" id="project-one-info">
+                    <p class="info-text"></p>
+                    <span class="hidden-text">The RI Project (FarmAuction) is an online marketplace that connects farmers directly with consumers, promoting fair pricing, access to fresh products, and transparent trade. It supports both auctions and direct sales while fostering community engagement, fair practices, and digital growth in agriculture.
+
+“Connecting farmers directly with consumers for fair prices and fresh products.” </span>
+
+                </div>
+                <div class="project-item">
+                    <span class="item-label" data-target="project-two-info">ResturantBillingSystem</span>
+                    <span class="item-dots"></span>
+                    <span class="item-value"><a href="https://github.com/andilethero/ResturantBillingSystem" target="_blank">View on GitHub</a></span>
+                </div>
+                <div class="project-info" id="project-two-info">
+                    <p class="info-text"></p>
+                    <span class="hidden-text">ResturantBillingSystem is a simple desktop application to manage restaurant billing and cashier operations. The system allows restaurant staff to log in or register, select menu items, specify quantities, and generate customer bills. The application includes features such as VAT calculation, payment processing, saving receipts, and maintaining a record of previous receipts per user.</span>
+                </div>
+                <div class="project-item">
+                    <span class="item-label" data-target="project-three-info">Social-Base App</span>
+                    <span class="item-dots"></span>
+                    <span class="item-value"><a href="https://github.com/andilethero/SocialBase" target="_blank">View on GitHub</a></span>
+                </div>
+                <div class="project-info" id="project-three-info">
+                    <p class="info-text"></p>
+                    <span class="hidden-text">SocialBase is a simple JavaFX desktop application that simulates a basic social networking platform. Users can register, log in, create posts, and view their own posts. The application demonstrates user authentication, basic post management, and a simple in-memory data model for users, posts, comments, and replies.</span>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="contact-section contact-pulp-section">
+            <div class="contact-label contact-label-top"><a href="mailto:mirokiro66@gmail.com">Email: andilethero999@gmail.com</a></div>
+            <div class="contact-label contact-label-left">Phone: +267 77025359</div>
+            <div class="contact-label contact-label-right"><a href="" target="_blank">LinkedIn:Thero Molefhe</a></div>
+            <div class="contact-pulp-main">Let's<br>Connect.</div>
+            <div class="contact-label contact-label-bottom"><a href="https://github.com/andilethero" target="_blank">GitHub: andilethero</a></div>
+        </section>
+    </div>
+</body>
+</html> 
